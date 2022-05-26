@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Binance Futures Bot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"/>
+</head>
+
+<body>
+<div>
+    <div class="container">
+        <h2 class="text text-success text-center " style="padding-top: 20px;padding-bottom: 20px;">
+            {{username}}'s Tables
+        </h2>
+        <table id="HTMLTab1" class="table-bordered border-info" style="border:3px solid;">
+            <thead>
+            <tr>
+                <th colspan="4">
+                    <h3 class="text text-success text-center "> Open Positions </h3>
+                </th>
+            </tr>
+            <tr>
+                <th data-field="symbol"><span class="text-success"> Symbol </span></th>
+                <th data-field="positionSide"><span class="text-success"> Entry Side </span></th>
+                <th data-field="positionAmt"><span class="text-success"> Entry Size </span></th>
+                <th data-field="entryPrice"><span class="text-success"> Entry Price </span></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <br/>
+    <!--data-search="true"-->
+    <div class="container">
+        <table id="HTMLTab2" class="table-bordered border-info" style="border:3px solid;">
+            <thead>
+            <tr>
+                <th colspan="3">
+                    <h3 class="text text-success text-center "> Unclosed Total PNL </h3>
+                </th>
+            </tr>
+            <tr>
+                <th data-field="symbol"><span class="text-success"> Symbol </span></th>
+                <th data-field="positionSide"><span class="text-success"> Side </span></th>
+                <th data-field="PnL"><span class="text-success"> PNL </span></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#HTMLTab1').bootstrapTable({
+                data: JSON.parse('{{jdata | tojson | safe}}')
+            });
+        });
+
+
+</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#HTMLTab2').bootstrapTable({
+                data: JSON.parse('{{pdata | tojson | safe}}')
+            });
+        });
+
+
+</script>
+</body>
+
+</html>
